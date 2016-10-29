@@ -81,7 +81,7 @@ $(function() {
          * there is at least a single .entry element within the .feed container.
          */
         it('have at least one entry in the feed container', function(done) {
-            expect($(".feed .entry").length).toBeGreaterThan(0);
+            expect($('.feed .entry').length).toBeGreaterThan(0);
             done();
         });
     });
@@ -95,7 +95,7 @@ $(function() {
             //checks the container.empty call used on the feed container in app.js
             containerSpy = spyOn($.fn, 'empty');
             loadFeed(1, function() {
-                beforeContent = $(".feed").html();
+                beforeContent = $('.feed').html();
                 loadFeed(2, done);
             });
         });
@@ -104,7 +104,7 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          */
         it('has different content from previous feed', function(done) {
-            var feed = $(".feed");
+            var feed = $('.feed');
             expect(feed.length).not.toBe(0);
             var afterContent = feed.html();
             expect(beforeContent).not.toEqual(afterContent);
