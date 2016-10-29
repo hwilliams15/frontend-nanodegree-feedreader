@@ -80,20 +80,17 @@ $(function() {
         /* Ensures when the loadFeed function is called and completes its work,
          * there is at least a single .entry element within the .feed container.
          */
-        it('have at least one entry in the feed container', function(done) {
+        it('have at least one entry in the feed container', function() {
             expect($('.feed .entry').length).toBeGreaterThan(0);
-            done();
         });
     });
 
     describe('New Feed Selection', function(done) {
         var beforeContent;
-        var containerSpy;
 
         //loads the first feed and then the second
         beforeEach(function(done) {
-            //checks the container.empty call used on the feed container in app.js
-            containerSpy = spyOn($.fn, 'empty');
+
             loadFeed(1, function() {
                 beforeContent = $('.feed').html();
                 loadFeed(2, done);
@@ -107,9 +104,9 @@ $(function() {
             var feed = $('.feed');
             expect(feed.length).not.toBe(0);
             var afterContent = feed.html();
+            expect(beforeContent).toBeDefined();
+            expect(afterContent).toBeDefined();
             expect(beforeContent).not.toEqual(afterContent);
-            //empty should have been called
-            expect(containerSpy).toHaveBeenCalled();
             done();
         });
 
